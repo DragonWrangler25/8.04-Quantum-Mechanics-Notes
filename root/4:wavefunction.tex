@@ -1,0 +1,79 @@
+\section{Interpreting the Wavefunction}
+\subsection{The Born Rule}\label{born_rule}
+
+So far, we've talked a lot about wavefunctions, but not a lot about what they actually \textit{mean}. In fact, this question vexed many of the most eminent physicists of the 20th century. Schrödinger thought that a wavefunction $\Psi$ represented a particle that had disintegrated --- it had spread out over all of space, and the larger the value of $\Psi$ at a point, the more of the particle was there. On the other hand, Max Born interpreted the wavefunction as representing the \textit{probability} that the particle was in a certain place. Neither Schrödinger nor Einstein ever accepted Born's interpretation, but it was ultimately correct. His claim can be summarized in the following sentence.
+
+\begin{framedthm}[Born rule]
+    The probability of finding a particle within the differential volume $dV=d^3x$ at position $\mathbf{x}$ is given by $$dP(\mathbf{x},\,t)=|\Psi(\mathbf{x},\,t)|^2d^3x.$$
+\end{framedthm}
+
+Since the particle must be detected \textit{somewhere} with probability $1$, we must have $$\int_{\text{all space}} d^3x|\Psi(\mathbf{x},\,t)|^2=1.$$If $\Psi$ satisfies this equation, it is said to be \textbf{normalized}. 
+
+\subsection{Normalization and Time Evolution}\label{normalization}
+
+We now run into a potential problem. Suppose that a wavefunction $\Psi(x,t)$ (in one dimension for convenience) is normalized at time $t=0$; the Schrödinger Equation then defines $\Psi(x,t)$ exactly for all $t$. For the Born rule interpretation to be valid, it better be the case that $\Psi$ is forced to be normalized for all $t$. 
+
+The normalization requirement in one dimensioncan be better written as $$\int_{-\infty}^{\infty}\Psi^*(x,\,t)\Psi(x,\,t)\,dx=1.$$In order for this to be possible, we can't have $\Psi$ converge to a nonzero constant. Of course, $\Psi$ could conceivably undergo some strange oscillation at $\infty$ that makes the integral converge, but this does not represent a physical system, so we will simply assume that it goes to 0. That is, we assume that       $$\lim_{x\to\pm\infty}\Psi(x,\,t)=0,\,\text{and}\lim_{x\to\pm\infty}\frac{\partial \Psi}{\partial x}\text{ is bounded}.$$If $\int_{-\infty}^{\infty}|\Psi|^2\,dx=N$ for some finite $N\neq 0$, we say that $\Psi$ is \textbf{normalizable}. To normalize it, we simply take a wavefunction $\Psi'=\frac{\Psi}{\sqrt{N}}$. Since the Schrödinger Equation is linear, $\Psi'$ is also a solution, and $\int_{-\infty}^{\infty}|\Psi'|^2\,dx=\int_{-\infty}^\infty\frac{|\Psi|^2}{N}\,dx=1$. On the other hand, if $\int_{-\infty}^{\infty}|\Psi|^2\,dx=0$ or $\pm\infty$, $\Psi$ is not normalizable. 
+
+\section{Probability Conservation}
+\subsection{Probability Density}\label{prob_conserv}
+
+Suppose $\Psi$ is normalized at time $t=0$. Let's check if the Schrödinger equation causes $\Psi$ to stay normalized for $t>0$. We define the \textbf{probability density} $\rho(x,\,t)=\Psi^*(x,\,t)\Psi(x,\,t)$ and $N(t)=\int\rho(x,\,t)\,dx$. We assume that $N(0)=1$. The question is the following: 
+
+\begin{framedquest*}
+    Will the Schrödinger Equation guarantee that $\frac{dN}{dt}=0?$
+\end{framedquest*}
+
+From the product rule, we have $$\frac{dN}{dt}=\int\frac{\partial}{\partial t}\rho(x,\,t)\,dx=\int dx\bigg((\frac{\partial\Psi^*}{\partial t})\Psi+\Psi^*(\frac{\partial\Psi}{\partial t})\bigg).$$We also have $\frac{\partial\Psi}{\partial t}=-\frac{i}{\hbar}\hat{H}\Psi$ from Theorem \ref{general_schrodinger_eqn}. Taking the complex conjugate of this equation, $\frac{\partial\Psi^*}{\partial t}=\frac{i}{\hbar}(\hat{H}\Psi)^*$. (Note that the conjugate of the derivative is the derivative of the conjugate.) Substituting, $$\frac{dN}{dt}=\int dx\,\frac{i}{\hbar}\bigg((\hat{H}\Psi)^*\Psi)-\Psi^*(\hat{H}\Psi)\bigg).$$For this to be 0, we need $$\int(\hat{H}\Psi)^*\Psi\,dx=\int\Psi^*(\hat{H}\Psi)\,dx.$$This holds if $\hat{H}$ is a \textbf{Hermitian operator}.
+
+\begin{frameddefn}[Hermitian operators]\label{hermitian}
+   An operator $\hat{H}$ is said to be \textbf{Hermitian} if, for any functions $\Psi_1$ and $\Psi_2$, $$\int(\hat{H}\Psi_1)^*\Psi_2=\int\Psi_1^*(\hat{H}\Psi_2).$$ 
+\end{frameddefn}
+
+In general, given an operator $\hat{T}$, we define its \textbf{Hermitian conjugate} $\hat{T}^\dagger$ such that $$\int(\hat{T}^\dagger\Psi_1)^*\Psi_2=\int\Psi_1^*(T\Psi_2).$$Thus $\hat{T}$ is Hermitian if $\hat{T}=\hat{T}^\dagger$.
+
+\subsection{Probability Current}\label{prob_current}
+
+Now that we've defined Hermitian operators, let's pick back up from $$\frac{dN}{dt}=\int\frac{\partial\rho}{\partial t}\,dx=\int dx\,\frac{i}{\hbar}\bigg((\hat{H}\Psi)^*\Psi)-\Psi^*(\hat{H}\Psi)\bigg).$$We know from Theorem \ref{general_schrodinger_eqn} that $\hat{H}=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x,\,t)$, with real potential $V(x,\,t)$. Thus, we have $$\frac{\partial\rho}{\partial t}=\frac{i}{\hbar}\bigg(-\frac{\hbar^2}{2m}\frac{\partial^2\Psi^*}{\partial x^2}\Psi+V(x,\,t)\Psi^*\Psi+\frac{\hbar^2}{2m}\Psi^*\frac{\partial^2\Psi}{\partial x^2}-\Psi^*V(x,\,t)\Psi\bigg).$$The two potential terms cancel, so we are left with $$\frac{\partial\rho}{\partial t}=-\frac{i\hbar}{2m}\bigg(\frac{\partial^2\Psi^*}{\partial x^2}\Psi-\Psi^*\frac{\partial^2\Psi}{\partial x^2}\bigg).$$Recall that we want to show that the integral of this expression over all $x$ is $0$. To do this, we show that the right-hand side is a total derivative with respect to $x$ of some function, which goes to $0$ at $\pm\infty$. In fact, we have $$\frac{\partial\rho}{\partial t}=-\frac{i\hbar}{2m}\frac{\partial}{\partial x}\bigg(\frac{\partial\Psi^*}{\partial x}\Psi-\Psi^*\frac{\partial\Psi}{\partial x}\bigg),$$ since the extra product rule terms cancel. We rewrite this as $$\frac{\partial\rho}{\partial t}=-\frac{\partial}{\partial x}\bigg[\frac{\hbar}{2im}\bigg(\Psi^*\frac{\partial\Psi}{\partial x}-\Psi\frac{\partial\Psi^*}{\partial x}\bigg)\bigg].$$Note that for any complex number $z$, we have $z-z^*=2i\operatorname{Im}(z)$. Thus, we have $\Psi^*\frac{\partial\Psi}{\partial x}-\Psi\frac{\partial\Psi^*}{\partial x}=2i\operatorname{Im}(\Psi^*\frac{\partial\Psi}{\partial x})$. Simplifying, $$\frac{\partial\rho}{\partial t}=-\frac{\partial}{\partial x}\bigg(\frac{\hbar}{m}\operatorname{Im}(\Psi^*\frac{\partial\Psi}{\partial x})\bigg).$$We define the term inside the $x$-derivative to be the \textbf{current density} $J(x,\,t)=\frac{\hbar}{m}\operatorname{Im}(\Psi^*\frac{\partial\Psi}{\partial x})$. The last line then yields the following theorem.
+
+\begin{framedthm}[Current conservation]\label{current_conservation_thm}
+    The probability density $\rho(x,t)$ and the current density $J(x,\,t)$  satisfy $$\frac{\partial\rho}{\partial t}+\frac{\partial J}{\partial x}=0.$$
+\end{framedthm}
+
+We are left with $$\frac{dN}{dt}=\int\frac{\partial\rho}{\partial t}dx=-\int\frac{\partial J}{\partial x}\,dx=-\bigg[J(\infty,\,t)-J(-\infty,\,t)\bigg].$$From Section \ref{normalization}, we know that as $x$ goes to $\pm\infty$, $\Psi$ and $\Psi^*$ go to $0$ and $\frac{\partial\Psi}{\partial x}$ and $\frac{\partial\Psi^*}{\partial x}$ are bounded. Thus, $J(x,\,t)=\frac{\hbar}{m}\operatorname{Im}(\Psi^*\frac{\partial\Psi}{\partial x})$ goes to $0$ as $x$ goes to $\pm\infty$. We conclude that $\frac{dN}{dt}=0$, so probability is conserved. 
+
+\begin{framedrmk*}
+    In the process of arriving at this result, we've uncovered two additional ideas.
+    \begin{enumerate}
+        \item There exists a current for probabilities.
+        \item $\hat{H}$ is a Hermitian operator.
+    \end{enumerate}
+\end{framedrmk*}
+
+\begin{framedrmk*}[Units of $J(x,t)$]
+    We have $[\Psi]=\frac{1}{\sqrt{L}}$, so $[\Psi^*\frac{\partial\Psi}{\partial x}]=\frac{1}{L^2}$. Also, $[\hbar]=\frac{ML^2}{T}$, so $[\frac{\hbar}{m}]=\frac{L^2}{T}$. Then $[J]=\frac{1}{T}$, which are the units of a current.
+\end{framedrmk*}
+
+Let $P_{ab}=\int_a^b\rho(x,\,t)\,dx$ be the probability of finding the particle in the segment $[a,\,b]$. Then we have $$\frac{dP_{ab}}{dt}=\int_a^b\frac{\partial\rho}{\partial t}\,dx=-\int_a^b\frac{\partial J}{\partial x}dx=-J(b,\,t)+J(a,\,t).$$Intuitively, this equation says that whenever the probability changes in a region, it must be because of some net current inward or outward.
+
+\subsection{Probability Current in 3 Dimensions}\label{3-d_current}
+
+In three dimensions, the spatial derivative is analogous to the gradient, so we expect the probability current to take the form $$\mathbf{J}(x,\,t)=\frac{\hbar}{m}\operatorname{Im}(\Psi^*\nabla\Psi).$$The current conservation equation becomes $$\frac{\partial\rho}{\partial t}+\nabla\cdot\mathbf{J}=0.$$The units of $\mathbf{J}$ are $[\mathbf{J}]=\frac{1}{L^2}\cdot\frac{1}{T}$.
+
+\begin{framedrmk*}[Relationship to electromagnetism]
+  Note that the current conservation equation is identical to its analog in electromagnetism, $\frac{\partial\rho_c}{\partial t}=-\nabla\cdot \vec{J}_c$. In fact, there is a complete set of analogies between electromagnetic charge and quantum mechanical probability, as shown in the following table.
+
+    \centering
+  \begin{tabular}{|c|c|c|}
+      \hline
+      & \textbf{EM} & \textbf{QM} \\
+      \hline
+      $\rho$ & charge density & probability density \\
+      $Q$ & charge in a volume & probability to find the particle in a volume \\
+      $\mathbf{J}$ & current density & probability current density \\
+      \hline
+  \end{tabular}
+
+\end{framedrmk*}
+
+Let $Q_V(t)=\int_V\rho(x,\,t)\,d^3x$ be the total probability of finding the particle in the region $V$. Then we have $$\frac{dQ_V}{dt}=\int_V\frac{\partial\rho}{\partial t}\,d^3x=-\int_V\nabla\cdot\mathbf{J}\,d^3x.$$By the divergence theorem, we can rewrite this volume integral as a surface integral of the \textit{flux} of the current: $$\frac{dQ_V}{dt}=-\oint_S\mathbf{J}\cdot d\mathbf{a}.$$This lends an intuitive physical interpretation to the 3-dimensional current conservation equation: if the probability of finding the particle in a region is changing, it's because there's some net current flux in or out of the region.

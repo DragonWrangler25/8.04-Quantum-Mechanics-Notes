@@ -1,0 +1,142 @@
+\section{Expectation Values}
+
+\subsection{Expectation Value of Position}\label{expected_position}
+
+Consider a random variable $Q$ that can take values in the set $\{Q_1,\ldots,Q_n\}$ with probabilities $\{P_1,\ldots,P_n\}$. Then we define the \textbf{expectation value}, or expected value, of $Q$ to be the average value we would expect after measuring $Q$ many times: $$\langle Q\rangle=\sum_{i=1}^nQ_ip_i.$$In a quantum system, the probability that a particle is found in the range$[x,\,x+dx]$ is given by $\Psi^*(x,\,t)\Psi(x,\,t)\,dx$. Thus, the expectation value of $x$, denoted by $\langle\hat{x}\rangle$, is $$\langle\hat{x}\rangle=\int x\,\Psi^*(x,\,t)\Psi(x,\,t)\,dx.$$Note that this quantity may depend on time.
+
+\begin{framedrmk*}[Physical interpretation of the expectation value]
+    If we were to create many copies of a physical system and measure the position of the particle in each one, the average would converge to $\langle\hat{x}\rangle$.
+\end{framedrmk*}
+
+\subsection{Expectation Value of Momentum}\label{expected_momentum}
+
+Recall that $|\Phi(p)|^2\,dp$ is the probability of finding the particle with momentum in the range $[p,\,p+dp]$. Then the expectation value of momentum is given by $$\langle\hat{p}\rangle=\int p\,|\Phi(p)|^2\,dp.$$It would be helpful to write this formula in position space (in terms of $x$). We expand \begin{align*}\langle\hat{p}\rangle&=\int p\,\Phi^*(p)\Phi(p)\,dp\\&=\int p\,dp\int\frac{dx'}{\sqrt{2\pi\hbar}}e^{ipx'/\hbar}\Psi^*(x')\int\frac{dx}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}\Psi(x)\\&=\frac{1}{2\pi\hbar}\int dx'\,\Psi^*(x')\int dx\,\Psi(x)\int dp\,p\,e^{ipx'/\hbar}e^{-ipx/\hbar}.\end{align*}Note that $$p\,e^{ipx'/\hbar}e^{-ipx/\hbar}=\bigg(-\frac{\hbar}{i}\frac{\partial}{\partial x}\bigg)e^{ipx'/\hbar}e^{-ipx/\hbar},$$since the partial derivative applies only to the second exponential factor. Thus we can substitute \begin{align*}\langle\hat{p}\rangle&=\frac{1}{2\pi\hbar}\int dx\,\Psi^*(x')\int dx\,\Psi(x)\int dp\,\bigg(-\frac{\hbar}{i}\frac{\partial}{\partial x}\bigg)\,e^{ipx'/\hbar}e^{-ipx/\hbar}\\&=\int dx'\Psi^*(x')\int dx\,\Psi(x)\bigg(-\frac{\hbar}{i}\frac{\partial}{\partial x}\bigg)\frac{1}{2\pi\hbar}\int dp\,e^{ip(x'-x)/\hbar}.\end{align*}Letting $p=\hbar u$ in the final integral, we have $$\frac{1}{2\pi\hbar}\int dp\,e^{ip(x'-x)/\hbar}=\frac{1}{2\pi}\int du\,e^{iu(x-x')}=\delta(x-x').$$Now consider the integral $$\int dx\,\Psi(x)\bigg(-\frac{\hbar}{i}\frac{\partial}{\partial x}\bigg)\delta(x-x').$$This is of the form $\int u\,dv$, where $u=\Psi$ and $v=-\frac{\hbar}{i}\delta(x-x')$. By integration by parts, we have $\int u\,dv=uv-\int v\,du$. Since $\Psi$ vanishes at infinity (which was one of our requirements from Section \ref{normalization}), the $uv$ term disappears. Thus, we have $$\int dx\,\Psi(x)\bigg(-\frac{\hbar}{i}\frac{\partial}{\partial x}\bigg)\delta(x-x')=\int dx\,\bigg(\frac{\hbar}{i}\frac{\partial\Psi}{\partial x}\bigg)\delta(x-x').$$Substituting this into our equation for $\langle\hat{p}\rangle$, we have \begin{align*}\langle\hat{p}\rangle&=\int dx'\Psi^*(x')\int dx\,\bigg(\frac{\hbar}{i}\frac{\partial\Psi}{\partial x}\bigg)\delta(x-x')\\&=\int dx\,\frac{\hbar}{i}\frac{\partial\Psi}{\partial x}\int dx'\Psi^*(x')\delta(x-x').\end{align*}The delta function $\delta(x-x')$ evaluates $\Psi^*(x')$ at $x$, so we finally have that $$\langle\hat{p}\rangle=\int p\,|\Phi(p)|^2\,dp=\int dx\,\frac{\hbar}{i}\frac{\partial\Psi}{\partial x}\Psi^*=\int dx\,\Psi^*(x)\frac{\hbar}{i}\frac{\partial}{\partial x}\Psi(x).$$Including the time dependence, we have $$\langle\hat{p}\rangle=\int dx\,\Psi^*(x,t)\,\hat{p}\,\Psi(x,t).$$In general, for an operator $\hat{Q}$, we have that the expectation value of $\hat{Q}$ is given by $$\boxed{\langle\hat{Q}\rangle=\int dx\,\Psi^*(x,t)\,\hat{Q}\,\Psi(x,t)}$$
+
+\begin{framedexpl}[Expectation value of the kinetic energy operator]
+    Consider the kinetic energy operator $\hat{T}=\frac{\hat{p}^2}{2m}=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}$. Then we have $$\langle\hat{T}\rangle= \int dx\,\Psi^*\bigg(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\Psi\bigg).$$Alternatively, in momentum space, we have $$\langle\hat{T}\rangle=\int dp\,\frac{p^2}{2m}|\Phi(p)|^2=\int dp\,\Phi^*(p)\frac{p^2}{2m}\Phi(p).$$
+\end{framedexpl}
+
+\subsection{Time Dependence of Expectation Values}\label{time_dependence_expectation}
+
+Consider the time derivative of the expectation value of an operator $\hat{Q}$. We have $$\frac{d}{dt}\langle\hat{Q}\rangle=\frac{d}{dt}\int dx\,\Psi^*\hat{Q}\Psi=\int dx\,\bigg(\frac{\partial\Psi^*}{\partial t}\hat{Q}\Psi+\Psi^*\hat{Q}\frac{\partial\Psi}{\partial t}\bigg).$$From the Schrödinger equation, we have $$\frac{d}{dt}\langle\hat{Q}\rangle=\int dx\,\bigg(\frac{i}{\hbar}(\hat{H}\Psi)^*\hat{Q}\Psi-\frac{i}{\hbar}\Psi^*\hat{Q}\hat{H}\Psi\bigg).$$Multiplying both sides by $i\hbar$, we have \begin{align*}i\hbar\frac{d}{dt}\langle\hat{Q}\rangle&=\int dx\,(\Psi^*\hat{Q}\hat{H}\Psi-(\hat{H}\Psi)^*\hat{Q}\Psi)\\&=\int dx\,(\Psi^*\hat{Q}\hat{H}\Psi-\Psi^*\hat{H}\hat{Q}\Psi)\\&=\int dx\,\Psi^*(\hat{Q}\hat{H}-\hat{H}\hat{Q})\Psi\\&=\int dx\,\Psi^*[\hat{Q},\hat{H}]\Psi.\end{align*}Therefore, we have the fundamental relationship $$i\hbar\frac{d}{dt}\langle\hat{Q}\rangle=\langle[\hat{Q},\hat{H}]\rangle.$$For example, for a free particle, $\hat{p}$ commutes with $\hat{H}=\frac{\hat{p}^2}{2m}$, so the expectation value of the momentum does not change with time.
+
+\subsection{Expectation Values of Hermitian Operators}\label{expected_hermitian}
+
+In Definition \ref{hermitian}, we defined an operator $\hat{Q}$ to be Hermitian if, for any $\Psi_1$ and $\Psi_2$, we had $$\int dx\,\Psi_1^*\hat{Q}\Psi_2 = \int dx\,(\hat{Q}\Psi_1)^*\Psi_2.$$We now introduce a shorthand for the integrals of pairs of functions: $$(\Psi_1,\Psi_2)=\int \Psi_1^*\Psi_2\,dx.$$This is called the \textbf{inner product} of $\Psi_1$ and $\Psi_2$, and it is a generalization of the vector dot product that obeys the properties $(a\Psi_1,\Psi_2)=a^*(\Psi_1,\Psi_2)$ and $(\Psi_1,a\Psi_2)=a(\Psi_1,\Psi_2)$.\footnote{This is a simplified version of \href{https:\/\/en.wikipedia.org\/wiki\/Bra\%E2\%80\%93ket\_notation}{Dirac notation}, 
+which represents wavefunctions as vectors and operators as matrices.} The condition of Hermiticity can be more briefly stated as$$(\Psi_1,\hat{Q}\Psi_2)=(\hat{Q}\Psi_1,\Psi_2).$$We can also express the expectation value of $\hat{Q}$ in a normalized wavefunction $\Psi$, which we found to be $$\langle\hat{Q}\rangle_\psi=(\Psi,\hat{Q}\Psi).$$We proceed by stating and proving some claims about a general Hermitian operator acting on a normalized wavefunction $\Psi$.
+
+\begin{framedprop}[$\langle\hat{Q}\rangle_\Psi$ is real]\label{9.1.1}
+
+\begin{proof}
+    We show that $(\langle\hat{Q}\rangle_\Psi)^*=\langle\hat{Q}\rangle_\Psi$. We have $$(\langle\hat{Q}\rangle_\Psi)^*=\int dx\,(\Psi^*\hat{Q}\Psi)^*=\int dx\,\Psi(\hat{Q}\Psi)^*=\int dx\,(\hat{Q}\Psi)^*\Psi.$$ Since $\hat{Q}$ is Hermitian, $$\int dx\,(\hat{Q}\Psi)^*\Psi=\int dx\,\Psi^*\hat{Q}\Psi=\langle\hat{Q}\rangle_\Psi.$$Thus, $\langle\hat{Q}\rangle_\Psi$ is real.
+\end{proof}
+\end{framedprop}
+
+Note that $\hat{Q}\Psi$ is a \textit{wavefunction} that we can take the complex conjugate of; we never think about the complex conjugate of the \textit{operator} $\hat{Q}$.
+
+\section{Eigenvalues \& Eigenfunctions}
+
+\subsection{Eigenvalues of Hermitian Operators}\label{eigenvalues}
+
+We define eigenvectors and eigenvalues of operators analogously to their definitions for matrices: $\Psi$ is an eigenvector of $\hat{Q}$ with associated eigenvalue $q$ if $\hat{Q}\Psi=q\Psi$. We can also call $\Psi$ an \textbf{eigenstate} or \textbf{eigenfunction} of $\hat{Q}$.
+
+\begin{framedprop}[The eigenvalues of $\hat{Q}$ are real]\label{9.1.2}
+    \begin{proof}Suppose $\Psi_1$ is an eigenstate of $\hat{Q}$ with eigenvalue $q_1$. Then the expectation value of $\hat{Q}$ in $\Psi_1$ is $$\langle\hat{Q}\rangle_{\Psi_1}=\int dx\,\Psi_1^*\hat{Q}\Psi_1=\int dx\,\Psi_1^*q_1\Psi_1=q_1\int dx\,\Psi_1^*\Psi_1.$$However, in Proposition \ref{9.1.1}, we showed that $\langle\hat{Q}\rangle_{\Psi_1}$ is real. Since $\int dx\,\Psi_1^*\Psi_1$ must be real, $q_1$ must also be real. Note that if the eigenfunction $\Psi_1$ is normalized, the expectation value of $\hat{Q}$ in $\Psi_1$ is exactly the eigenvalue $q_1$.\end{proof}
+\end{framedprop}
+
+\subsection{Eigenfunctions of Hermitian Operators}\label{eigenfunctions}
+
+Consider the collection of eigenfunctions and eigenvalues of the Hermitian operator $\hat{Q}$: \begin{align*}\hat{Q}\Psi_1&=q_1\Psi_1,\\\hat{Q}\Psi_2&=q_2\Psi_2,\\\vdots\quad&\qquad\,\vdots\end{align*}This list may be finite or infinite.
+
+\begin{framedprop}[The eigenfunctions of $\hat{Q}$ can be organized to satisfy orthonormality: $(\Psi_i,\Psi_j)=\delta_{ij}$]\label{9.2.1}
+
+    \begin{proof}For $i=j$, this simply claims that we can normalize all the eigenfunctions, which we can certainly do. We also require that different eigenfunctions are orthogonal. We prove this for the case of $q_i\neq q_j$.
+
+    We evaluate $(\Psi_i,\hat{Q}\Psi_j)$ in two different ways. First, $(\Psi_i,\hat{Q}\Psi_j)=(\Psi_1,q_j\Psi_j)=q_j(\Psi_i,\Psi_j)$. However, by Hermiticity and Proposition \ref{9.1.2}, we also have $(\Psi_i,\hat{Q}\Psi_j)=(\hat{Q}\Psi_i,\Psi_j)=(q_i\Psi_i,\Psi_j)=q_i(\Psi_i,\Psi_j)$. Thus, we have $$(q_i-q_j)(\Psi_i,\Psi_j)=0.$$Since $q_i\neq q_j$, this can only be true if $(\Psi_i,\Psi_j)=0$.
+
+    This proof does not hold if there are \textbf{degeneracies} in the spectrum of $\hat{Q}$ -- that is, if there are multiple eigenfunctions with the same eigenvalue. In this case, we would have to show that it is possible to choose $\text{linear combinations}$ of the degenerate eigenfunctions that are mutually orthogonal. This can be done via the Gram-Schmidt process from linear algebra.\footnote{This is covered in Lakeside's linear algebra course. If you're curious, ask a math teacher!} \end{proof}
+\end{framedprop}
+
+That brings us to our most important result, which we will not prove,\footnote{Again, ask a linear algebra teacher!} but which is quite literally a necessary condition for all the rest of the physics we will do in this course. It is called the \textbf{spectral theorem}, and has analogs in all sorts of math fields, including calculus and graph theory!
+
+\begin{framedthm}[Spectral Theorem]\label{spectral}
+    The eigenfunctions of $\hat{Q}$ form an \textbf{orthonormal basis} of the possible wavefunctions: any reasonable $\Psi$ can be expressed as a combination of eigenfunctions. In other words, given an arbitrary wavefunction $\Psi$ and the eigenfunctions $\Psi_i$ of $\hat{Q}$, we can write $$\Psi=\sum_i\alpha_i\Psi_i$$for calculable coefficients $\alpha_i$. Indeed, given the eigenfunctions, we have that $\alpha_i=(\Psi_i,\Psi)$, which can be proven by doing the integral: $$\int dx\,\Psi^*_i\sum_j\alpha_p\Psi_j=\sum_j\alpha_j\int dx\,\Psi_i^*\Psi_j=\sum_j\delta_{ij}=\alpha_i.$$Additionally, we have \begin{align*}
+    \int|\Psi|^2dx &= \int(\sum_i\alpha_i\Psi_i)^*\sum_j\alpha_j\Psi_j dx \\ &= \sum_i\sum_j\alpha_i^*\alpha_j\int dx\,\Psi_i^*\Psi_j\\ &=\sum_i\sum_j\alpha^*_i\alpha_j\delta_{ij}\\ &=\sum_i\alpha_i^*\alpha=\sum_i|\alpha_i|^2.
+    \end{align*}
+
+    If $\Psi$ is normalized, we have $$\sum_i|\alpha_i|^2=1.$$
+\end{framedthm}
+
+We are now finally able to state the measurement postulate, which is how we understand that Hermitian operators represent observables. It is an \textit{axiom}, which means it cannot be proven. Instead, it is a fact that we take to be true because it aligns with all our experiments.
+
+\begin{framedthm}[Measurement postulate]\label{measurement}
+   If we measure the Hermitian operator $\hat{Q}$ with eigenfunctions $\Psi_i$ in the state $\Psi=\sum_i\alpha_i\Psi_i$, the possible outcomes for the measurement are the eigenvalues $q_1,q_2,\ldots$. The probability $p_i$ to measure $q_i$ is given by $$p_i=|\alpha_i|^2.$$After the measurement (yielding $q_i$), the state of the system becomes $$\Psi'=\Psi_i.$$This is called the \textbf{collapse} of the wavefunction. 
+\end{framedthm} 
+
+Wavefunction collapse implies that repeated measurements will always yield the same result with no uncertainty. A small subtlety occurs with degenerate eigenstates. If $\Psi=(\alpha_i\Psi_i+\alpha_k\Psi_k)+\ldots$, where $\Psi_i$ and $\Psi_k$ have the same eigenvalue $q$, then measuring $q$ causes the wavefunction to collapse to the \textit{sum} of $\Psi_i$ and $\Psi_k$:$$\Psi'=\frac{\alpha_i\Psi_i+\alpha_k\Psi_k}{\sqrt{|\alpha_i|^2+|\alpha_j|^2}}.$$
+
+\begin{framedrmk*}[Copenhagen interpretation]
+    Theorem \ref{measurement} is an axiom of the \textit{Copenhagen interpretation} of quantum mechanics, which was developed by Werner Heisenberg, Max Born, and Niels Bohr. The Copenhagen interpretation treats quantum mechanics as intrinsically nondeterministic, with probabilistic measurements as given by the measurement postulate. What makes quantum mechanics nondeterministic is that when you make a measurement, you know you will get an eigenvalue, but you do not know which one.
+
+    Other interpretations of quantum mechanics exist. For example, the many worlds hypothesis includes the observer in the system to resolve the phenomenon of wavefunction collapse.
+\end{framedrmk*}
+
+Note that Theorem \ref{spectral} is necessary to make measurements of a general physical system, since we need to be able to express any $\Psi$ in terms of the eigenfunctions of any Hermitian operator.
+
+\subsection{Consistency Condition}\label{consistency}
+
+Suppose we have an expansion $\Psi=\sum_i\alpha_i\Psi_i$ of a wavefunction in terms of the eigenfunctions of some Hermitian operator $\hat{Q}$. We wish to find the expectation value of $\hat{Q}$: \begin{align*}\langle\hat{Q}\rangle&=\int dx\,\sum_i\alpha_i^*\Psi_i^*\hat{Q}\sum_j\alpha_j\Psi_j\\&=\sum_{i,j}\alpha_i^*\alpha_j\int dx\,\Psi_i^*\hat{Q}\Psi_j\\&=\sum_{i,j}\alpha_i^*\alpha_jq_j\int dx\,\Psi_i^*\Psi_j\\&=\sum_{i,j}\alpha_i^*\alpha_jq_i\delta_{ij}\\&=\sum_i|\alpha_i|^2q_i=\sum_ip_iq_i.\end{align*}This is exactly what it should be: the $q_i$ are the possible measurements by Theorem \ref{measurement}, and the expected value is their weighted sum by the probabilities $p_i=|\alpha_i|^2$.
+
+\subsection{Extended Example: Particle on a Circle}\label{particle-on-a-circle}
+
+Consider a free particle on a circle $x\in [0,L)$, where we set the point $x=L$ equivalent to $x=0$. A wavefunction $\Psi(x)$ on the circle must satisfy the periodicity condition $\Psi(x+L)=\Psi(x)$. Suppose that at some fixed time we have $$\Psi(x)=\sqrt{\frac{2}{L}}(\frac{1}{\sqrt{3}}\sin\frac{2\pi x}{L}+\sqrt{\frac{2}{3}}\cos\frac{6\pi x}{L}).$$It is easy to verify that this wavefunction satisfies the periodicity condition.
+
+\begin{framedquest*}
+    If you measure momentum in this state, what are the possible results and their probabilities?
+\end{framedquest*}
+
+\begin{framedansw*}
+    We must find the set of momentum eigenstates and rewrite $\Psi$ as a superposition of these states. Momentum eigenstates are of the form $e^{ikx}$. By the periodicity condition, we must have $k=\frac{2\pi m}{L}$ for $m\in\mathbb{Z}$. Thus we write the momentum eigenstates $\Psi_m(x)=Ne^{\frac{2\pi imx}{L}}$ for some normalization constant $N$. Indeed, normalizing gives $N=\frac{1}{\sqrt{L}}$.
+
+    We now apply the momentum operator to a momentum eigenstate $\Psi_m$: $$\hat{p}\Psi_m(x)=\frac{\hbar}{i}\frac{\partial}{\partial x}\frac{1}{\sqrt{L}}e^{\frac{2\pi imx}{L}}=\frac{\hbar 2\pi m}{L}\Psi_m.$$Thus, the eigenvalue of the eigenstate $\Psi_m$ is $$p_m=\frac{\hbar 2\pi m}{L}.$$Now we have to rewrite $\Psi$ as a superposition of these eigenstates: $$\Psi(x)=\sqrt{\frac{2}{3}}\frac{1}{2i}\frac{1}{\sqrt{L}}(e^{\frac{2\pi ix}{L}}-e^{-\frac{2\pi ix}{L}})+\frac{2}{\sqrt{3}}\frac{1}{2}\frac{1}{\sqrt{L}}(e^{\frac{6\pi ix}{L}}+e^{-\frac{6\pi ix}{L}}).$$Therefore, we have $$\Psi(x)=\sqrt{\frac{2}{3}}\frac{1}{2i}\Psi_1(x)-\sqrt{\frac{2}{3}}\frac{1}{2i}\Psi_{-1}(x)+\frac{1}{\sqrt{3}}\Psi_3(x)+\frac{1}{\sqrt{3}}\Psi_{-3}(x).$$This is the key result; we can now read off the possible values of $p$ and their probabilities.
+
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        Momentum & Probability \\
+        \hline
+        $p=\frac{2\pi\hbar}{L}$ & $P=|\sqrt{\frac{2}{3}}\frac{1}{2i}|^2=\frac{1}{6}$ \\
+        $p=-\frac{2\pi\hbar}{L}$ & $P=|-\sqrt{\frac{2}{3}}\frac{1}{2i}|^2=\frac{1}{6}$ \\
+        $p=\frac{6\pi\hbar}{L}$ &
+        $P=|\sqrt{\frac{1}{3}}|^2=\frac{1}{3}$ \\
+        $p=-\frac{6\pi\hbar}{L}$ &
+        $P=|\sqrt{\frac{1}{3}}|^2=\frac{1}{3}$\\
+        \hline
+    \end{tabular}
+
+\end{framedansw*}
+
+\subsection{Defining Uncertainty}
+
+For a random variable $Q$ with possible values $Q_1,\ldots,Q_n$ and corresponding probabilities $p_1,\ldots,p_n$, the expected value of $Q$ is $\bar{Q}=\sum_i p_iQ_i$. The uncertainty in $Q$ is represented by the \textbf{standard deviation} of $Q$: $$(\Delta Q)^2 = \sum_ip_i(Q_i-\bar{Q})^2.$$Notice that if $\Delta Q=0$, we have $Q_i=\bar{Q}$ for all $i$; that is, $Q$ is constant. We can expand the right-hand side to get \begin{align*}(\Delta Q)^2&=\sum_ip_iQ_i^2-2\sum_ip_iQ_i\bar{Q}+\sum_ip_i\bar{Q}^2\\&=\overline{Q^2}-2\bar{Q}\bar{Q}+(\bar{Q})^2\\&=\overline{Q^2}-\bar{Q}^2.\end{align*}Since by definition $(\Delta Q)^2\geq 0$, we have the interesting inequality $$\overline{Q^2}\geq \bar{Q}^2.$$Now let us consider the quantum mechanical case. Let $\hat{Q}$ be a Hermitian operator. We define the uncertainty of $\hat{Q}$ in a state $\Psi$ by the relation $$(\Delta\hat{Q})^2_\Psi=\langle\hat{Q}^2\rangle_\Psi-\langle\hat{Q}\rangle^2_\Psi.$$For brevity, we will omit the $\Psi$ subscript.
+
+\begin{framedprop}
+    \label{9.5.1}
+    The uncertainty can also be written as the expectation value of the square of the difference between the operator and its expectation value: $$(\Delta Q)^2=\langle(\hat{Q}-\langle\hat{Q}\rangle)^2\rangle$$Note that this implies that $\Delta Q$ is nonnegative.
+
+    \begin{proof}
+    We evaluate $$\langle(\hat{Q}-\langle\hat{Q}\rangle)^2\rangle=\langle\hat{Q}^2-2\hat{Q}\langle\hat{Q}\rangle+\langle\hat{Q}\rangle^2\rangle.$$By linearity, this equals $$\langle\hat{Q}^2\rangle-2\langle\hat{Q}\rangle\langle\hat{Q}\rangle+\langle\hat{Q}\rangle^2=\langle\hat{Q}^2\rangle-\langle\hat{Q}\rangle^2.$$By the definition of uncertainty, we have the desired equation.
+\end{proof}
+\end{framedprop}
+
+\begin{framedprop}\label{9.5.2}
+    The uncertainty can be written as the integral of the square of the norm of $(\hat{Q}-\langle\hat{Q}\rangle)\Psi$:$$(\Delta Q)^2=\int_{-\infty}^{\infty}dx\,\bigg|(\hat{Q}-\langle\hat{Q}\rangle)\Psi(x)\bigg|^2.$$
+
+    \begin{proof} We start with $$\langle(\hat{Q}-\langle\hat{Q}\rangle)^2\rangle=\int dx\,\Psi^*(\hat{Q}-\langle\hat{Q}\rangle)(\hat{Q}-\langle\hat{Q}\rangle)\Psi.$$Since $\hat{Q}$ is Hermitian and $\langle\hat{Q}\rangle$ is a real number, the operator $(\hat{Q}-\langle\hat{Q}\rangle)$ is Hermitian. Thus, we can express this as $$\int dx\,\bigg((\hat{Q}-\langle\hat{Q}\rangle)\Psi\bigg)^*\bigg((\hat{Q}-\langle\hat{Q}\rangle)\Psi\bigg)=\int dx\,\bigg|(\hat{Q}-\langle\hat{Q}\rangle)\Psi(x)\bigg|^2.$$From Proposition \ref{9.5.1}, this equals $(\Delta Q)^2$. \end{proof}
+\end{framedprop}
+
+We now consider what it means for $\Delta Q$ to be $0$. If $\Psi$ is a (normalized) eigenstate of $\hat{Q}$ with eigenvalue $\lambda$, we have $\hat{Q}\Psi=\lambda\Psi$. Multiplying both sides by $\Psi^*$ and integrating, we have $$\langle\hat{Q}\rangle=\int dx\,\Psi^*\hat{Q}\Psi=\lambda\int dx\,\Psi^*\Psi=\lambda.$$Therefore, the eigenvalue of $\Psi$ is simply the expectation value of $\hat{Q}$ in $\Psi$. We then have $$\langle(\hat{Q}-\langle\hat{Q}\rangle)^2\rangle=(\Delta Q)^2=0$$by Proposition \ref{9.5.1}. On the other hand, if $\Delta Q = 0$, by Proposition \ref{9.5.2}, we must have $\langle(\hat{Q}-\langle\hat{Q}\rangle)\rangle=0$, which implies that $\hat{Q}\Psi=\langle\hat{Q}\rangle\Psi$. We see that the uncertainty of $\hat{Q}$ in state $\Psi$ is $0$ if and only if $\Psi$ is an eigenstate of $\hat{Q}$.
+
+\begin{framedrmk*}[Uncertainty in symmetric wavefunctions]
+    If $\Psi$ is symmetric about the origin, the expectation value of $x$ is $0$, so we have $$(\Delta x)^2=\langle x^2\rangle.$$
+\end{framedrmk*}

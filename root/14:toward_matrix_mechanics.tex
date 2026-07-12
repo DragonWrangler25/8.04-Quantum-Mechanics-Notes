@@ -1,0 +1,54 @@
+\section{The Simplest Quantum System}
+\subsection{Wavefunctions as Vectors}\label{wavefunctions_as_vectors}
+
+In the concluding thoughts of this course, we consider what the ``simplest'' quantum system is. Your first thought might be the particle in a box or the harmonic oscillator, but both have infinitely many bound states. In this sense, they are not very simple! Even the delta potential, which has only one bound state, has infinitely many scattering states. To find the \textit{simplest} quantum system, we go back to our roots.
+
+We rewrite the Schrödinger equation: $$i\hbar\frac{\partial\Psi}{\partial t}=\hat{H}\Psi,$$which yields stationary states of the form $$\Psi=e^{-\frac{iEt}{\hbar}}\psi,$$where $\hat{H}\psi=E\psi$. Now, $\hat{H}$ can basically be \textit{whatever we want}, given that it is Hermitian: $\hat{H}^\dagger=\hat{H}$. 
+
+In this course, we've solved the Schrödinger equation for a variety of potentials in $1$ and $3$ dimensions. To find the simplest quantum system, let's solve it in $0$ dimensions --- we restrict the particle to only $2$ possible points: $x_1$ and $x_2$. Instead of considering a continuous wavefunction $\psi(x)$, we now consider a \textit{vector} $$\begin{pmatrix} \psi(x_1) \\ \psi(x_2) \end{pmatrix}=\begin{pmatrix} \alpha \\ \beta \end{pmatrix},$$where $|\alpha|^2$ is the probability that the particle is at $x_1$, while $|\beta|^2$ is the probability that the particle is at $x_2$. This should remind you of our work with Mach-Zehnder interferometers at the very beginning of this course!
+
+Now let's give our system some physical intuition. Maybe we have a box with two halves, and we wish to model the probability that the particle is on the left side of the box. Or maybe we have a particle with \textit{spin}, which can be either \textbf{spin up} or \textbf{spin down}. There are numerous cases in which a particle may be in only one of two states.
+
+In a system with only two states, the inner product of two wavefunctions $\psi_1={\alpha_1\choose\beta_1}$ and $\psi_2={\alpha_2\choose\beta_2}$ is $$(\psi_1,\psi_2)=\alpha_1^*\alpha_2+\beta_1^*\beta_2=(\alpha_1^*\;\;\beta_1^*){\alpha_1\choose\beta_1}.$$In more advanced quantum mechanics, we represent \textit{continuous} wavefunctions in this way --- column vectors representing their values at all real points. In this language, a hermitian operator is a matrix $H$ such that $$(H^T)^*=H.$$
+
+\subsection{Hamiltonians as Matrices}\label{hamiltonians_as_matrices}
+
+Our wavefunctions have now been reduced to vectors in $2$ dimensions. Then the Hamiltonian is a $2\times2$ matrix, with the condition that $(H^T)^*=H$. This forces the diagonal elements to be real. The other elements can be complex. The most general form of a $2\times2$ Hermitian matrix is $$H=\begin{pmatrix}a_0+a_3 & a_1-ia_2 \\ a_1+ia_2 & a_0-a_3\end{pmatrix},$$where $a_0,a_1,a_2,a_3\in\mathbb{R}$. Notice that this indeed satisfies $(H^T)^*=H$. We can then decompose $H$ into its components: $$H=a_0\begin{pmatrix}1&0\\0&1\end{pmatrix}+a_1\begin{pmatrix}0&1\\1&0\end{pmatrix}+a_2\begin{pmatrix}0&-1\\i&0\end{pmatrix}+a_3\begin{pmatrix}1&0\\0&-1\end{pmatrix}.$$These four matrices form a basis of the set of all $2\times 2$ Hermitian matrices. They are so famous that the second, third, and fourth are given the special name of \textbf{Pauli matrices} and are denoted $\sigma_1$, $\sigma_2$, and $\sigma_3$. The first matrix is, of course, simply the identity $I$.
+
+\begin{frameddefn}[Pauli matrices]
+    The \textbf{Pauli matrices} form a basis of all $2\times2$ Hermitian matrices and are defined as follows: $$\sigma_1=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad\sigma_2=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad\sigma_3=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.$$
+\end{frameddefn}
+
+Now, the Hamiltonian is not just any Hermitian matrix --- it must have units of energy. Thus we can write $$H=\frac{\hbar\omega_1}{2}\sigma_1+\frac{\hbar\omega_2}{2}\sigma_2+\frac{\hbar\omega_3}{2}\sigma_3,$$where the $\omega_i$ are some variables with units of angular frequency.
+
+\begin{framedrmk*}[Identity matrix]
+    Why don't we use the identity matrix $I$ in the Hamiltonian? Because adding $I$ to the Hamiltonian matrix corresponds to adding a scalar constant to the Hamiltonian operator, which we have already seen does nothing to the solutions. Instead, it merely changes how we define the zero-energy point. 
+\end{framedrmk*}
+
+We can rewrite the Hamiltonian $$H=\omega_1(\frac{\hbar}{2}\sigma_1)+\omega_2(\frac{\hbar}{2}\sigma_2)+\omega_3(\frac{\hbar}{2}\sigma_3).$$The terms in the parentheses have units of angular momentum. We see that in general, there can be three different angular momenta --- let's call them $S_x=\frac{\hbar}{2}\sigma_1$, $S_y=\frac{\hbar}{2}\sigma_2$, and $S_z=\frac{\hbar}{2}\sigma_3$. Note that these $S_i$ are all matrices. We can therefore find their commutators.
+
+We write $$[S_x,S_y]=[\frac{\hbar}{2}\sigma_1,\frac{\hbar}{2}\sigma_2]=\frac{\hbar^2}{4}(\sigma_1\sigma_2-\sigma_2\sigma_1).$$Computing the matrix products gives $$[S_x,S_y]=i\hbar\,\frac{\hbar}{2}\begin{pmatrix}1&0 \\ 0 & -1\end{pmatrix}=i\hbar S_z.$$The analogous commutation relations are true for the other pairs. These matrices not only have the same units as angular momentum, but also behave identically to the angular momentum operators! 
+
+\begin{framedrmk*}[Spin $\frac{1}{2}$]
+    We have just discovered the basic properties of spin. Specifically, these matrices describe the spin of \textbf{spin-$\mathbf{\frac{1}{2}}$ particles}. All known \textbf{fermions}, which includes all particles that constitute matter, have spin $\frac{1}{2}$.
+\end{framedrmk*}
+
+\begin{framedrmk*}[NMR]
+    Similarly to angular momentum, we can express the total spin as a vector operator $\hat{\mathbf{S}}$. We can then write $H=\vec{\omega}\,\mathbf{S}$. If we solve the equations governing spin in three dimensions, we find that spin precesses, just like angular momentum. This is the basis of \textbf{nuclear magnetic resonance}, or NMR.
+\end{framedrmk*}
+
+\subsection{Eigenstates as Eigenvectors}\label{eigenstates_as_eigenvectors}
+
+We now proceed to find the eigenstates of each spin angular momentum operator. We have $$S_z=\frac{\hbar}{2}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}.$$It is already diagonalized, so the eigenstates are simply $1\choose0$ and $0\choose1$. We call the first state \textbf{spin up} and denote it $|\uparrow\rangle$, and we call the second state \textbf{spin down}, denoted $|\downarrow\rangle$. We have $S_z|\uparrow\rangle=\frac{\hbar}{2}|\uparrow\rangle$, and $S_z|\downarrow\rangle=-\frac{\hbar}{2}|\downarrow\rangle$. This system has spin $\frac{1}{2}$ because of the $\frac{1}{2}$ factor in the eigenvalues of $S_z$.
+
+Next we write $$S_x=\frac{\hbar}{2}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}.$$Consider the state $$\frac{1}{\sqrt{2}}{1\choose1}=\frac{1}{\sqrt{2}}(|\uparrow\rangle+|\downarrow\rangle).$$What does $S_x$ do to this state? We have $$S_x\frac{1}{\sqrt{2}}{1\choose1}=\frac{\hbar}{2}\frac{1}{\sqrt{2}}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}{1\choose1}=\frac{\hbar}{2}\frac{1}{\sqrt{2}}{1\choose1}.$$Thus, this state is an eigenstate of $S_x$! We define it to be the spin up state in the $x$-direction and denote it $|\uparrow;\,x\rangle$. We similarly define the spin down state in the $x$-direction $|\downarrow;\,x\rangle=\frac{1}{\sqrt{2}}{1\choose -1}$.
+
+Now we've gotten spin states along $x$ and $z$. What about $y$? There's one more thing to try: a \textit{complex} superposition$$\frac{1}{\sqrt{2}}{1\choose i}=\frac{1}{\sqrt{2}}(|\uparrow\rangle+i|\downarrow\rangle).$$Applying $S_y$ to this state, we have $$S_y\frac{1}{\sqrt{2}}{1\choose i}=\frac{\hbar}{2}\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix}\frac{1}{\sqrt{2}}{1\choose i}=\frac{\hbar}{2}\frac{1}{\sqrt{2}}{1\choose i}.$$This state is indeed an eigenstate of $S_y$! We define it to be the spin up state in the $y$-direction and denote it $|\uparrow;\,y\rangle$. Similarly, we define the spin down state in the $y$-direction $|\downarrow;\,y\rangle=\frac{1}{\sqrt{2}}{1\choose -i}$.
+
+\subsection{Closing}
+
+To conclude, what we have found here is that spin is an entirely different quantity from the position and momentum wavefunctions we've explored earlier in this course. The spin wavefunctions are simply $2$-dimensional vectors and are operated on by $2\times 2$ Hermitian matrices. Despite their simplicity, they are highly useful in modeling all sorts of quantum systems, including quantum computers and Bell experiments. 
+
+Throughout this course, you have learned the fundamentals of quantum mechanics and even applied it to solve a problem as rich as the hydrogen atom. Take a moment to appreciate how far you've come! If you're like me, many of the concepts --- tunneling through a potential barrier, entanglement of two particles, nondeterminism --- might have seemed mystical before learning the theory behind them. I hope that seeing how these phenomena are consequences of something as familiar as calculus or linear algebra has made them much less formidable.
+
+Quantum mechanics has been around for just around a century, and it is far from a completed field. Nonetheless, there is so much more to explore, from quantum computing to quantum chemistry, and you've laid a great foundation to continue building on. Regardless of where your future studies take you, I'd like to thank you again for taking the time to read my notes. Good luck, and godspeed.

@@ -1,0 +1,104 @@
+\section{Operators}
+\label{operators}
+\subsection{Wave of a Free Particle}
+\label{free_particle}
+
+Consider a particle with energy $E$ and momentum $p$, whose matter wave has wavelength $\omega$ and wave number $k$ given by $E=\hbar\omega$ and $p=\hbar k$. Suppose the particle moves in the positive $x$-direction. The matter waves are combinations of plane waves, of which there are a few possibilities:
+
+\begin{enumerate}
+    \item $\sin(kx-\omega t)$
+    \item $\cos(kx-\omega t)$
+    \item $e^{i(kx-\omega t)}$
+    \item $e^{i(-kx+\omega t)}$
+\end{enumerate}
+
+We will now determine the specific shape of the matter wave. The argument will rely on superposition (Section \ref{superposition}) and a vague notion of probability. In particular, we will build a wave that has equal probability of moving to the right or to the left, using each of the possible plane waves above, and show that two of these waves are unphysical.
+
+\begin{enumerate}
+    \item $\Psi(x,\,t)=\sin(kx-\omega t)+\sin(kx+\omega t)=2\sin(kx)\cos(\omega t)$. This is unacceptable, since it vanishes for all $x$ at times $t=\frac{\pi}{2\omega},\,\frac{3\pi}{2\omega},\,\frac{5\pi}{2\omega}\ldots$, which means the particle would suddenly disappear at these times.
+    \item $\Psi(x,\,t)=\cos(kx-\omega t)+\cos(kx+\omega t)=2\cos(kx)\cos(\omega t)$. This is no good for the same reason as 1.
+    \item $\Psi(x,\,t)=e^{i(kx-\omega t)}+e^{i(-kx-\omega t)}=(e^{ikx}+e^{-ikx})e^{-i\omega t}=2\cos(kx)e^{-i\omega t}$. Since $e^{i\omega t}\neq 0$, this wave never disappears for all $x$.  
+    \item $\Psi(x,\,t)=e^{i(-kx+\omega t)}+e^{i(kx+\omega t)}=2\cos(kx)e^{i\omega t}$. This wave is just as good as 3.
+\end{enumerate}
+
+We have two remaining possibilities for the wavefunction, given by 3. and 4. Suppose they were both valid. Then we could superimpose them to get the wavefunction of a rightward-moving particle, $$\Psi(x,\,t)=e^{i(kx-\omega t)}+e^{i(-kx+\omega t)}=2\cos(kx-\omega t).$$However, this is equivalent to 2., which we have shown is not a possible candidate for a wavefunction. Therefore, we must choose between 3. and 4. By convention, physicists choose 3.
+
+\begin{frameddefn}[Matter wave of a free particle]\label{free_particle_wave}
+    The matter wave or wavefunction of a free particle with $p=\hbar k$ and $E=\hbar\omega$ is given by $$\Psi(x,\,t)=e^{ikx-i\omega t}.$$In three dimensions, we have $\vec{p}=\hbar\vec{k}$ and the wavefunction is $$\Psi(x,\,t)=e^{i\vec{k}\vec{x}-i\omega t}.$$
+\end{frameddefn}
+
+We will now use Definition \ref{free_particle_wave} to derive the expression governing \textit{all} wavefunctions.
+
+\subsection{Momentum Operator}\label{p_operator}
+
+Suppose we would like to find the momentum of the particle above, given its wavefunction. Note that $$\frac{\hbar}{i}\frac{\partial}{\partial\,x}\Psi(x,\,t)=\hbar k\Psi(x,\,t)=p\Psi(x,\,t).$$We define $\frac{\hbar}{i}\frac{\partial}{\partial x}$ to be the \textbf{momentum operator} $\hat{p}$, meaning that it multiplies a wavefunction $\Psi$ by its momentum $p$. That is, $$\hat{p}\Psi(x,\,t)=p\Psi(x,\,t).$$ Recall that in linear algebra, an \textbf{eigenvector} of a matrix $A$ is a vector $v$ such that $A\vec{v}=k\vec{v}$ for some \textbf{eigenvalue} $k$. Similarly, we call $\Psi(x,\,t)$ an \textbf{eigenstate} or \textbf{eigenfunction} of $\hat{p}$ with eigenvalue $p$. In general, operators behave like matrices and wavefunctions behave like vectors. In more advanced treatments of quantum mechanics, it can be shown that all operators can be represented by $2\times 2$ matrices.
+
+Note that $\Psi(x,\,t)$ is a state of \textit{definite momentum}; given $\Psi$, we can find $p$ exactly. This makes sense, since we defined $\Psi$ for a particle with momentum $p$. As we will see later, not all wavefunctions have definite momentum.
+
+\subsection{Energy Operator}\label{e_operator}
+
+Now let's find the \textbf{energy operator} in a similar way --- this will be an expression that produces $E\Psi=\hbar\omega\Psi$ when acting on $\Psi$. We can write $$i\hbar\frac{\partial}{\partial t}\Psi(x,\,t)=i\hbar(-i\omega)\,\Psi(x,\,t)=E\,\Psi(x,\,t).$$Note that nowhere in the above two derivations did we use the physical knowledge that $E=\frac{p^2}{2m}$. Thus, instead of taking the energy operator to be $i\hbar\frac{\partial}{\partial t}$, suppose we have some arbitrary operator $\mathcal{O}$ such that $\mathcal{O}\Psi=E\Psi$. We have $$\mathcal{O}\Psi=\frac{p^2}{2m}\Psi=\frac{p}{2m}(p\,\Psi)=\frac{p}{2m}\frac{\hbar}{i}\frac{\partial}{\partial x}\Psi.$$Since $p$ is a constant, it can be moved into the derivative. Thus, $$\mathcal{O}\,\Psi=\frac{1}{2m}\frac{\hbar}{i}\frac{\partial}{\partial x}(\frac{\hbar}{i}\frac{\partial}{\partial x}\Psi).$$Rearranging, we see that $$\mathcal{O}\,\Psi=E\,\Psi=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\Psi.$$From this we read off the energy operator $\hat{E}=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}$, such that $\hat{E}\Psi=E\Psi$. As above, we call $\Psi$ an eigenstate of the energy operator with eigenvalue $E$. Note that this yields a nice analog of the classical law, $$\hat{E}=\frac{\hat{p}^2}{2m}.$$However, recall that we also had $E\Psi=i\hbar\frac{\partial}{\partial\,t}\Psi$. When applied to free particles, the Schrödinger equation, which we first encountered back in Section \ref{schrodinger}, simply equates these two definitions of the energy operator:
+\begin{Dequation}
+    \begin{align*}
+        i\hbar\frac{\partial}{\partial t}\Psi=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\Psi. \tag{Schrödinger equation}
+    \end{align*}
+\end{Dequation}
+Strictly speaking, this is the \textit{free-particle} Schrödinger equation; the \textit{general} Schrödinger equation takes into account potential energy, which we will see soon.
+
+\subsection{Commutators}\label{commutators}
+
+Notice that operators can be as simple as scalar products --- the number $3$, for example, can be considered as an operator that triples its argument. We introduce an operator $\hat{x}$, which, acting on a function of $x$, multiplies it by $x$. That is, $\hat{x}f(x)=xf(x)$. We mentioned before that operators are represented by matrices. Recall that matrix multiplication is non-commutative. We thus want to know if \textit{operators} commute.
+
+\begin{framedrmk*}[Heisenberg's path to quantum]
+    While Schrödinger formulated quantum mechanics beginning with wave mechanics and the Schrödinger Equation, Heisenberg started with operators and matrices. Later, Schrödinger showed that the two approaches were equivalent.
+\end{framedrmk*}
+
+We wish to know if the operators $\hat{x}$ and $\hat{p}$ commute. That is, for some arbitrary function $\phi(x,\,t)$, $$\text{Does}\;\ \hat{x}\hat{p}\phi-\hat{p}\hat{x}\phi=0?$$We have \begin{align*}
+\hat{x}\hat{p}\phi-\hat{p}\hat{x}\phi&=\hat{x}(\hat{p}\phi)-\hat{p}(\hat{x}\phi)\\&=\hat{x}(\frac{\hbar}{i}\frac{\partial \phi}{\partial x})-\hat{p}(x\phi)\\&=\frac{\hbar}{i}x\frac{\partial\phi}{\partial x}-\frac{\hbar}{i}\frac{\partial}{\partial x}(x\phi).
+\end{align*}Note that applying the product rule to the second term, we see that $\frac{\partial}{\partial x}(x\phi)=x\frac{\partial\phi}{\partial x}+\phi$.  The first term cancels, so we see that $$\hat{x}\hat{p}\phi-\hat{p}\hat{x}\phi=-\frac{\hbar}{i}\phi=i\hbar\phi.$$Since operators, like matrices, distribute, we have $(\hat{x}\hat{p}-\hat{p}\hat{x})\phi=i\hbar\phi$. Notice that $\hat{x}\hat{p}-\hat{p}\hat{x}$ is an operator that, when applied to a function $\phi$, multiplies $\phi$ by $i\hbar$. Since we can treat numbers as operators, we can write the operator equation $$\hat{x}\hat{p}-\hat{p}\hat{x}=i\hbar.$$We define the \textbf{commutator} of two operators $\hat{A}$ and $\hat{B}$ to be $[\hat{A},\,\hat{B}]=\hat{A}\hat{B}-\hat{B}\hat{A}.$
+
+\begin{frameddefn}[Commutator]
+    The \textbf{commutator} of two operators $\hat{A}$ and $\hat{B}$ is $$[\hat{A},\,\hat{B}]=\hat{A}\hat{B}-\hat{B}\hat{A}.$$
+\end{frameddefn}
+
+Thus, we can write $$[\hat{x},\,\hat{p}]=i\hbar.$$
+Importantly, this is nonzero, which means the $\hat{x}$ and $\hat{p}$ operators do \textit{not} commute. This is the basis of the uncertainty principle, as we will see later.
+
+\section{The Schrödinger Equation}\label{schrodinger_main}
+
+\subsection{Free-Particle Schrödinger Equation}\label{free_particle_schrodinger}
+
+Let's input the plane wavefunction $\Psi=e^{ikx-i\omega t}$ to the free-particle Schrödinger Equation from Section \ref{e_operator}, $$i\hbar\frac{\partial}{\partial t}\Psi=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\Psi.$$We get \begin{align*}
+i\hbar(-i\omega)\Psi&=-\frac{\hbar^2}{2m}(ik)^2\Psi \\
+\implies\hbar\omega&=\frac{(\hbar k)^2}{2m}\\
+ \implies E&=\frac{p^2}{2m}.
+\end{align*}
+Thus, the free-particle Schrödinger Equation directly yields the classical relationship between energy and momentum. 
+
+As mentioned in Section \ref{stationary_phase_approximation}, the general solution to the free-particle Schrödinger equation can be written as the superposition of infinitely many wavefunctins: $$\Psi(x,\,t)=\int_{\infty}^{\infty}dk\;\Phi(k)\,e^{ikx-i\omega(k)t}.$$In Section \ref{group_velocity}, we proved that if $\Phi(k)$ is localized around some $k_0$, the group velocity $\frac{d\omega}{dk}$ must be given by $$v_g=\frac{dE}{dp}=\frac{p}{m}=v.$$
+
+\subsection{General Schrödinger Equation}
+\label{general_schrodinger}
+
+Recall that we can write the free-particle Schrödinger equation in the form $$i\hbar \frac{\partial\Psi}{\partial t}=\hat{E}\,\Psi,$$where $\hat{E}=\frac{\hat{p}^2}{2m}$.
+Now consider a particle whose potential energy is given by a function $V(x,\,t)$. We call $V$ the \textbf{potential} of the particle. Then the total energy is the sum of the kinetic and potential energies, so $$\hat{E}=\frac{\hat{p}^2}{2m}+V(x,\,t).$$We call the total energy operator the \textbf{Hamiltonian operator} $\hat{H}=\hat{E}$. Then the Schrödinger equation takes the following form, which is true in general: 
+
+\begin{framedthm}[General Schrödinger Equation]\label{general_schrodinger_eqn}
+    $$i\hbar\frac{\partial\Psi}{\partial t}=\bigg(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x,\,t)\bigg)\Psi.$$
+\end{framedthm}
+
+In Theorem \ref{general_schrodinger_eqn}, $V(x,t)$ should be thought of as a numerical operator that multiplies $\Psi$ by a scalar value. 
+
+\begin{framedtip*}[Hamiltonian operators]
+    A recurring idea in quantum mechanics is to formulate Hamiltonian (energy) operators, plug them into the general Schrödinger equation, and solve for $\Psi$.
+\end{framedtip*}
+
+\subsection{Schrödinger Equation in 3 Dimensions}
+
+Recall that in 1 dimension, we had $\hat{p}=\frac{\hbar}{i}\frac{\partial}{\partial x}$. In three dimensions, we take components: $\hat{p}_1=\frac{\hbar}{i}\frac{\partial}{\partial x_1}$, $\hat{p}_2=\frac{\hbar}{i}\frac{\partial}{\partial x_2}$, and $\hat{p}_3=\frac{\hbar}{i}\frac{\partial}{\partial x_3}$. In vector form, we have $\mathbf{p}=\hbar \mathbf{k}$, and we can write the momentum operator as $$\hat{\mathbf{p}}=\frac{\hbar}{i}\nabla.$$ We also write the wavefunction of a free particle, $\Psi=e^{i\mathbf{k}\cdot\mathbf{x}-i\omega t}$. Thus, $$\hat{\mathbf{p}}\Psi=\frac{\hbar}{i}\nabla\Psi=\frac{\hbar}{i}i\mathbf{k}\Psi=\hbar\mathbf{k}\Psi.$$Similarly, the Hamiltonian operator becomes $\hat{H}=\frac{(\hat{\mathbf{p}})^2}{2m}+V(\vec{x},\,t)$, where $$(\hat{\mathbf{p}})^2=\hat{\mathbf{p}}\cdot\hat{\mathbf{p}}=\frac{\hbar}{i}\nabla\cdot\frac{\hbar}{i}\nabla=-\hbar^2\,\nabla^2.$$Thus, we arrive at the 3-dimensional Schrödinger Equation:
+
+\begin{framedthm}[3-Dimensional Schrödinger Equation]
+   $$i\hbar\frac{\partial\Psi}{\partial t}=\bigg(-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{x},\,t)\bigg)\Psi.$$ 
+\end{framedthm} 
+
+Note that while $\hat{p_i}$ fails to commute with $\hat{x_i}$, it \textit{does} commute with $\hat{x_j}$, where $i\neq j$. Thus, we can write $[\hat{x_i},\hat{p_j}]=i\hbar\,\delta_{ij}$, where $\delta_{ij}=1$ if $i\neq j$, and $\delta_{ij}=0$ if $i=j$.
